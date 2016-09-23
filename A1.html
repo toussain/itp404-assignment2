@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment 1</title>
+</head>
+<body>
+
+<script 
+
+//ITP 404 Fall 2016
+//Janelle Toussaint
+//September 14
+//Assignment 1
+
+//TASK 1
+//Write a function that takes simulated API data and maps it using Array.prototpe.map into a usable form
+var reviewsData = {
+  data: [
+    {
+      id: 1,
+      attributes: {
+        'review-title': 'Terrible!',
+        'stars': 1,
+        'cost': 'high'
+      }
+    },
+    {
+      id: 2,
+      attributes: {
+        'review-title': 'Decent place',
+        'stars': 3,
+        'cost': 'average'
+      }
+    },
+    {
+      id: 3,
+      attributes: {
+        'review-title': 'I would come again',
+        'stars': 3.5,
+        'cost': 'average'
+      }
+    },
+    {
+      id: 4,
+      attributes: {
+        'review-title': 'So good, and cheap!',
+        'stars': 4,
+        'cost': 'low-average'
+      }
+    },
+    {
+      id: 5,
+      attributes: {
+        'review-title': 'Good, but pricey!',
+        'stars': 4,
+        'cost': 'high'
+      }
+    }
+  ]
+};
+
+function extractReviews(reviewsData) {
+
+  
+ var reviewsDisplay = reviewsData.data.map(function(data){
+  return {
+    id: data.id,
+    title: data.attributes['review-title'],
+    stars: data.attributes.stars,
+    cost: data.attributes.cost,
+  };
+ 
+});
+    return reviewsDisplay;
+}
+
+//console.log(extractReviews(reviewsData));
+
+
+
+
+
+//TASK 2
+//write a function that filters the word "good"
+var reviews = [
+  { id: 1, title: 'Terrible!', stars: 1, cost: 'high' },
+  { id: 2, title: 'Decent place', stars: 3, cost: 'average' },
+  { id: 3, title: 'I would come again', stars: 3.5, cost: 'average' },
+  { id: 4, title: 'So good, and cheap!', stars: 4, cost: 'low-average' },
+  { id: 5, title: 'Good, but pricey!', stars: 4, cost: 'high' }
+];
+
+function findGoodReviews(reviews) {
+  
+  var filteredReviews = reviews.filter(function(review){
+  return review.title.toUpperCase().indexOf('GOOD') != -1;
+});
+  return filteredReviews;
+}
+
+console.log(findGoodReviews(reviews));
+
+
+
+
+//TASK 3
+//write a function that reducexs 'reviews' to a single object that displays the count for each value contained in cost.
+
+function classifyReviewsByCost(reviews) {
+var costLookup = reviews.reduce(function(reviewObject, review) {
+  
+  var reviewId = review.cost;
+  
+  if(reviewObject[reviewId]) {
+    reviewObject[reviewId] += 1;
+  } else {
+    reviewObject[reviewId] = 1;
+  }
+  
+  return reviewObject;
+  
+},{});
+  return costLookup;
+}
+
+console.log(classifyReviewsByCost(reviews));
+
+
+</script>
+
+</body>
+</html>
